@@ -11,8 +11,8 @@ dht11 DHT11;
 
 
 // Wifi
-const char* ssid = "Davidselacome";
-const char* password = "upbb6645";
+const char* ssid = "WIFI_NAME";
+const char* password = "WIFI_PASSWORD";
 
 // Tiempo
 WiFiUDP ntpUDP;
@@ -73,9 +73,15 @@ void setup() {
   Serial.begin(115200);
   WiFi.begin(ssid, password);
 
+  bool firstPrint = false;
+
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
-    Serial.println("Connecting to WiFi...");
+
+    if(!firstPrint) {
+      Serial.println("Connecting to WiFi...");
+      firstPrint = false;
+    }
   }
 
   Serial.println("Connected to WiFi");
